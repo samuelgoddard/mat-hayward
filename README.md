@@ -2,6 +2,8 @@
   Mat Hayward Photography Portfolio
 </h1>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b28e0afb-caea-470e-8edb-b6458ff1fc9b/deploy-status)](https://app.netlify.com/sites/boring-lalande-b686d0/deploys)
+
 Gatsby + Dato powered photography portfolio for Mat Hayward
 
 ## 🚀 Quick start
