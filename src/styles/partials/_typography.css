@@ -1,0 +1,86 @@
+body {
+  @apply font-body antialiased !important;
+}
+
+.container {
+  @apply mx-auto;
+  max-width: theme('screens.lg');
+}
+
+p {
+  @apply mb-8 text-lg;
+
+  @screen md {
+    @apply text-xl;
+  }
+}
+
+p + h2 {
+  @apply pt-6 block;
+
+  @screen md {
+    @apply pt-8;
+  }
+}
+
+.meta {
+  @apply text-2xs tracking-wider font-sans uppercase mb-3;
+}
+
+.meta-date {
+  @apply relative;
+  
+  &:before {
+    @apply absolute top-0 left-0 w-3 h-px bg-black -ml-4 mt-2;
+    content: ' ';
+  }
+}
+
+.nav-item {
+  @apply text-xs font-sans uppercase inline-block;
+  margin-bottom: 8px;
+
+  &.is--active {
+    @apply relative;
+    
+    &:after {
+      @apply absolute right-0 top-0 leading-none bg-black rounded-full ml-2 -mr-3;
+      
+      content: ' ';
+      width: 6px;
+      height: 6px;
+      margin-top: 7px;
+    }
+  }
+}
+
+.featured-nav-item {
+  @apply text-4xl font-heading relative inline-block transition leading-none border-b border-transparent mb-1;
+
+  @screen md {
+    @apply text-5xl opacity-10 mb-8;
+
+    &:hover, &:focus {
+      @apply opacity-100 border-black;
+    }
+  }
+
+  @screen lg {
+    @apply text-6xl mb-10;
+  }
+}
+
+.link {
+  background-image: linear-gradient(to right, black 75%, black 75%);
+  background-position: 0 1.1em;
+  background-repeat: repeat-x;
+  background-size: 8px 1px;
+}
+
+@responsive {
+  .upright {
+    writing-mode: vertical-rl;
+    text-orientation: sideways-right;
+    transform: rotate(180deg);
+  }
+}
