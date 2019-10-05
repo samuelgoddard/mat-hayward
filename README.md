@@ -1,5 +1,5 @@
 <h1 align="center">
-  Mat Hayward Photography Portfoli
+  Mat Hayward Photography Portfolio
 </h1>
 
 Gatsby + Dato powered photography portfolio for Mat Hayward
