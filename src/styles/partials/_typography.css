@@ -23,6 +23,18 @@ p + h2 {
   }
 }
 
+h2, h3, h4 {
+  @apply text-2xl font-heading leading-minimal mb-6;
+
+  @screen md {
+    @apply text-3xl mb-8;
+  }
+
+  @screen xl {
+    @apply text-4xl;
+  }
+}
+
 .meta {
   @apply text-2xs tracking-wider font-sans uppercase mb-3;
 }
