@@ -8,7 +8,7 @@ const PhotographyPage = ({ data: { photography } }) => {
   return (
     <Layout>
       <SEO title="Photography" />
-      <div className="pt-10 md:pt-40 pb-24 md:pb-40 overflow-hidden">
+      <div className="pt-12 md:pt-40 pb-24 md:pb-40 overflow-hidden">
         <div className="w-full md:w-5/12 mx-auto relative mb-12 px-8 md:px-0">
           <nav>
             <ul>
