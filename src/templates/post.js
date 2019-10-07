@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Img from "gatsby-image"
 
 import BackgroundImage from 'gatsby-background-image'
 
@@ -22,7 +23,7 @@ const PostPage = ({ data: { current } }) => {
               <span className="meta">Info</span>
               <span className="block" dangerouslySetInnerHTML={{__html:current.blurb}}></span>
             </div>
-            <div className="hidden md:block md:fixed bottom-0 left-0 pb-0 md:p-12 lg:p-16">
+            <div className="hidden md:block md:fixed z-10 bottom-0 left-0 pb-0 md:p-12 lg:p-16">
               <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl mb-0 pb-0">{current.title}</h1>
             </div>
           </div>
@@ -39,22 +40,29 @@ const PostPage = ({ data: { current } }) => {
       </div>
 
       <div className="container pb-10 md:pb-10 px-8">
-        <img className="w-full mb-8 xl:mb-16" src="https://via.placeholder.com/1920x1080/cbd5e0/a0aec0" alt="Placeholder" />
-        
-        <div className="overflow-hidden">
-          <div className="flex flex-wrap md:-mx-4 xl:-mx-8">
-            <div className="w-full md:w-1/2 md:px-4 xl:px-8 mb-8 xl:mb-16">
-              <img className="w-full" src="https://via.placeholder.com/720x1080/cbd5e0/a0aec0" alt="Placeholder" />
+        {
+          current.imageryModular.map((block) => (
+            <div key={block.id}>
+              {
+                block.model.apiKey === 'single_image' &&
+                  <Img fluid={block.single.fluid} key={block.single.title} alt={block.single.alt} className="w-full mb-8 xl:mb-16" />
+              }
+              {
+                block.model.apiKey === 'double_image' &&
+                  <div className="overflow-hidden">
+                    <div className="flex flex-wrap md:-mx-4 xl:-mx-8">
+                      <div className="w-full md:w-1/2 md:px-4 xl:px-8 mb-8 xl:mb-16">
+                        <Img fluid={block.imageOne.fluid} key={block.imageOne.title} alt={block.imageOne.alt} className="w-full mb-8 xl:mb-16" />
+                      </div>
+                      <div className="w-full md:w-1/2 md:px-4 xl:px-8 mb-8 xl:mb-16">
+                        <Img fluid={block.imageTwo.fluid} key={block.imageTwo.title} alt={block.imageTwo.alt} className="w-full mb-8 xl:mb-16" />
+                      </div>
+                    </div>
+                  </div>
+              }
             </div>
-            <div className="w-full md:w-1/2 md:px-4 xl:px-8 mb-8 xl:mb-16">
-              <img className="w-full" src="https://via.placeholder.com/720x1080/cbd5e0/a0aec0" alt="Placeholder" />
-            </div>
-          </div>
-        </div>
-
-        <img className="w-full mb-8 xl:mb-16" src="https://via.placeholder.com/1920x1080/cbd5e0/a0aec0" alt="Placeholder" />
-
-        <img className="w-full mb-8 xl:mb-16" src="https://via.placeholder.com/1920x1080/cbd5e0/a0aec0" alt="Placeholder" />
+          ))
+        }
       </div>
 
       <div className="flex flex-wrap items-center container px-8 pb-12 md:pb-20 lg:pb-24 md:pl-40">
@@ -85,6 +93,34 @@ export const query = graphql`
         alt
         fluid(maxWidth: 1600, imgixParams: { fm: "jpg", auto: "compress" }) {
           ...GatsbyDatoCmsSizes
+        }
+      }
+      imageryModular {
+        ... on DatoCmsSingleImage {
+          id
+          model { apiKey }
+          single: images {
+            fluid(maxWidth: 1600, imgixParams: { fm: "jpg", auto: "compress" }) {
+              ...GatsbyDatoCmsSizes
+            }
+            alt
+          }
+        }
+        ... on DatoCmsDoubleImage {
+          id
+          model { apiKey }
+          imageOne {
+            fluid(maxWidth: 1600, imgixParams: { fm: "jpg", auto: "compress" }) {
+              ...GatsbyDatoCmsSizes
+            }
+            alt
+          }
+          imageTwo {
+            fluid(maxWidth: 1600, imgixParams: { fm: "jpg", auto: "compress" }) {
+              ...GatsbyDatoCmsSizes
+            }
+            alt
+          }
         }
       }
     }

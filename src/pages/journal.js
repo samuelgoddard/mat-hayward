@@ -15,7 +15,7 @@ const JournalPage = ({ data: { journals } }) => {
         <div key={index} className="w-full md:w-8/12 lg:w-7/12 mx-auto relative pb-12 md:pb-24 lg:pb-40 mb-12 md:px-0">
           <div className="w-full md:w-10/12 lg:w-11/12 ml-auto">
             <div className="relative">
-              <span className="text-lg md:text-xl lg:text-2xl uppercase font-sans tracking-widest absolute top-0 left-0 -mt-3 md:-mt-4 lg:-mt-5 ml-8 lg:ml-16 z-10">Biography &bull; MH</span>
+              <span className="text-lg md:text-xl lg:text-2xl uppercase font-sans tracking-widest absolute top-0 left-0 -mt-3 md:-mt-4 lg:-mt-5 ml-8 lg:ml-16 z-10">Journal &bull; MH</span>
 
               <Img fluid={node.featuredImage.fluid} key={node.featuredImage.title} alt={node.featuredImage.alt} className="w-full mb-4 md:mb-20 lg:mb-24" />
 
