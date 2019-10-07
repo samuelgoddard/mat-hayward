@@ -3,6 +3,7 @@ import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Img from "gatsby-image"
 
 const JournalPage = ({ data: { journals } }) => {
   return (
@@ -16,7 +17,7 @@ const JournalPage = ({ data: { journals } }) => {
             <div className="relative">
               <span className="text-lg md:text-xl lg:text-2xl uppercase font-sans tracking-widest absolute top-0 left-0 -mt-3 md:-mt-4 lg:-mt-5 ml-8 lg:ml-16 z-10">Biography &bull; MH</span>
 
-              <img className="w-full mb-4 md:mb-20 lg:mb-24" src="https://via.placeholder.com/920x540/cbd5e0/a0aec0" alt="Placeholder" />
+              <Img fluid={node.featuredImage.fluid} key={node.featuredImage.title} alt={node.featuredImage.alt} className="w-full mb-4 md:mb-20 lg:mb-24" />
 
               <div className="md:absolute bottom-0 right-0 md:-mb-8 lg:-mb-10 md:-mr-12 z-10 leading-minimal w-10/12 md:text-right mb-8 lg:mb-0 px-8 md:px-0">
                 <h1 className="text-3xl md:text-4xl xl:text-5xl font-heading leading-minimal">{node.title}</h1>
@@ -52,6 +53,14 @@ export const query = graphql`
           id
           meta {
             publishedAt(formatString: "DD MMMM YYYY")
+          }
+          featuredImage {
+            url
+            title
+            alt
+            fluid(maxWidth: 1600, imgixParams: { fm: "jpg", auto: "compress" }) {
+              ...GatsbyDatoCmsSizes
+            }
           }
         }
       }
